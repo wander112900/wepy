@@ -1,0 +1,140 @@
+<template>
+  <view class="container">
+    <scroll-view scroll-x="true" class="weui-navbar" scroll-left="{{scrollLeftValue}}">
+      <block wx:for="{{tabs}}" wx:key="item">
+        <view id="{{index}}" class="{{activeIndex == index ?'item_on':''}} default-item" @tap="tabClick" style="width:{{tabW}}px">
+          {{item}}
+        </view>
+      </block>
+      <view class="weui-navbar-slider" style="transform:translateX({{slideOffset}}px);"></view>
+    </scroll-view>
+    <swiper current="{{activeIndex}}" class="swiper-box" duration="100" @change="bindChange">
+      <swiper-item class="swiper-item">
+        <view class="slide-view">
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+          <view style="height:100rpx;">dsfdsf</view>
+        </view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab1</view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab2</view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab3</view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab4</view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab5</view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="slide-view">tab6</view>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Category extends wepy.page {
+    config = {}
+    components = {}
+    data = {
+      tabs: ['精选', '手机数码', '服饰', '家居生活', '美妆个护', '母婴童装', '生鲜水果'],
+      activeIndex: 0,
+      slideOffset: 0,
+      tabW: 0,
+      mtabW: 0,
+      scrollLeftValue: 0
+    }
+    methods = {
+      tabClick(e) {
+        var idIndex = e.currentTarget.id
+        var offsetW = e.currentTarget.offsetLeft
+        this.activeIndex = idIndex
+        this.slideOffset = offsetW - 3
+        if (idIndex <= 0) {
+          this.scrollLeftValue = 0
+        } else {
+          this.scrollLeftValue = (idIndex - 2) * this.tabW
+        }
+        this.$apply()
+      },
+      bindChange(e) {
+        /*
+        var current = e.detail.current
+        var offsetW = current * this.mtabW
+        this.activeIndex = current
+        this.slideOffset = offsetW
+        if (current <= 2) {
+          this.scrollLeftValue = 0
+        } else {
+          this.scrollLeftValue = (current - 2) * this.tabW
+        }
+        this.$apply()
+        */
+      }
+    }
+    events = {}
+    async onLoad() {
+      let systemInfo = await wepy.getSystemInfo()
+      let w = systemInfo.windowWidth / 4
+      this.tabW = w - 6
+      this.mtabW = w
+    }
+  }
+</script>
+
+<style lang="less">
+  .weui-navbar {
+    padding: 10rpx 0 0 0;
+    width: 100%;
+    position: fixed;
+    box-sizing: border-box;
+    white-space: nowrap;
+    z-index: 100;
+    background: white;
+    border-bottom: 1rpx solid #ccc;
+    .default-item {
+      display: inline-block;
+      text-align: center;
+      font-size: 32rpx;
+      box-sizing: border-box;
+      height: 7%;
+      padding-bottom: 20rpx;
+    }
+    .item_on {
+      color: #FB0036;
+    }
+    .weui-navbar-slider {
+      position: absolute;
+      width: 150rpx;
+      height: 4rpx;
+      background: #FB0036;
+      bottom: 20px;
+      left: 12.5rpx;
+      transition: transform .3s;
+    }
+  }
+  .swiper-box {
+    background-color: bisque;
+    height: 900px;
+    border-bottom: 1px solid #d1d1d1;
+    .swiper-item {
+      text-align: center;
+      padding-top: 100rpx;
+    }
+  }
+</style>

@@ -1,0 +1,170 @@
+<template>
+  <view class="container">
+    <homeSwiper :list.sync="adList"></homeSwiper>
+    <view class="pos">
+      <view class="search_read_only">
+        <navigator class="search_content" open-type="navigate" url="/pages/test">
+          <i class="iconfont icon-search"></i>
+          <view class="search_input">搜索商品</view>
+        </navigator>
+      </view>
+    </view>
+    <homenav :list.sync="navList"></homenav>
+    <goods :list.sync="goodsList"></goods>
+    <up></up>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import HomeSwiper from '../components/home/swiper'
+  import HomeNav from '../components/home/nav'
+  import Goods from '../components/goods'
+  import Up from '../components/up'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '顺联动力商城',
+      navigationBarBackgroundColor: '#FFF',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      homenav: HomeNav,
+      homeSwiper: HomeSwiper,
+      goods: Goods,
+      up: Up
+    }
+    data = {
+      currentPage: 1,
+      adList: [{
+        picUrl: 'https://i8.mifile.cn/v1/a1/f021586c-7aed-bf61-0f55-5b1121fddccf.webp',
+        advertUrl: '/pages/cart',
+        id: 1
+      }, {
+        picUrl: 'https://i8.mifile.cn/v1/a1/b8d71702-7578-46a7-309f-9614943b9599.webp',
+        advertUrl: '/pages/find',
+        id: 2
+      }, {
+        picUrl: 'https://i8.mifile.cn/v1/a1/166b14f9-483c-f369-7245-7f2a33b18451.webp',
+        advertUrl: '/pages/me',
+        id: 3
+      }],
+      navList: [{
+        picUrl: 'https://m.360buyimg.com/mobilecms/jfs/t5872/340/146804759/11154/f4ae1409/591d94c4N79a488cc.png',
+        title: '优惠券',
+        id: 1
+      }, {
+        picUrl: 'https://m.360buyimg.com/mobilecms/jfs/t11425/73/2288282326/13451/e11c7697/5a14d167Ne5414496.png',
+        title: '全球购',
+        id: 2
+      }, {
+        picUrl: 'https://m.360buyimg.com/mobilecms/jfs/t5656/351/153181074/12227/e35aa8d/591d9456Naa85e195.png',
+        title: '品质服饰',
+        id: 3
+      }, {
+        picUrl: 'https://m.360buyimg.com/mobilecms/jfs/t5842/205/151189300/13247/a6de2d/591d94edNc42fb94d.png',
+        title: '电脑办公',
+        id: 4
+      }],
+      goodsList: {
+        style: 'shop_item2',
+        title: '推荐商品',
+        data: [{
+          id: 1,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/5aafa8a4-5808-bd0d-85e5-9e7ab5de337c!360x360.webp',
+          name: '红米4A 轻盈小巧的',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 2,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/fc369341-c77e-75d0-bbe8-d6191f2854b4!360x360.webp',
+          name: '小米Note 3  人脸解锁 1600万美颜自拍小米Note 3  人脸解锁 1600万美颜自拍小米Note 3  人脸解锁 1600万美颜自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 3,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 4,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 5,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 6,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 7,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 8,
+          thumLogo: 'https://i8.mifile.cn/v1/a1/e7853ea5-1260-6cb2-91ed-2c539a87db0a!360x360.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 8,
+          thumLogo: 'https://m.360buyimg.com/babel/s211x211_jfs/t9487/72/530276827/117630/82bbfc0c/59aa2463Nb7f281d7.jpg!q50.jpg.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }, {
+          id: 8,
+          thumLogo: 'https://m.360buyimg.com/babel/s211x211_jfs/t9487/72/530276827/117630/82bbfc0c/59aa2463Nb7f281d7.jpg!q50.jpg.webp',
+          name: '红米5 Plus 千元全面屏，前置柔光自拍',
+          price: 100,
+          marketPrice: 120,
+          saleCount: 12
+        }]
+      }
+    }
+    methods = {}
+    onLoad() {}
+    onReachBottom() {
+      if (this.currentPage >= 3) return
+      this.goodsList.data = [...this.goodsList.data, ...this.goodsList.data]
+      this.currentPage++
+      this.$apply()
+    }
+  }
+</script>
+
+<style lang="less">
+  .pos {
+    position: absolute;
+    top: 5rpx;
+    left: 0;
+    right: 0;
+    .search_content {
+      background: rgba(0, 0, 0, 0.1);
+      border: 1px solid #efefee;
+      .icon-search,
+      .search_input {
+        color: #efefee;
+      }
+    }
+  }
+</style>

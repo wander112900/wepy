@@ -1,0 +1,46 @@
+<template lang="wxml">
+  <view class="up" @tap="up" wx:if="{{showUp}}">
+    <i class="iconfont icon-up"></i></view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Up extends wepy.component {
+    components = {}
+    data = {
+      showUp: false
+    }
+    methods = {
+      up() {
+        if (wepy.pageScrollTo) {
+          wepy.pageScrollTo({
+            scrollTop: 0
+          })
+        }
+      }
+    }
+    events = {}
+    onLoad() {}
+    onPageScroll(e) {
+      if (e.scrollTop > 500) {
+        this.showUp = true
+      } else {
+        this.showUp = false
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .up {
+    position: fixed;
+    top: 80%;
+    right: 5rpx;
+    width: 30px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    .icon-up {
+      font-size: 30px;
+    }
+  }
+</style>

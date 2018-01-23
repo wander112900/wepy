@@ -1,0 +1,47 @@
+<template lang="wxml">
+  <view class="nav_list" wx:if="{{list.length>0}}">
+    <navigator wx:for="{{list}}" wx:key="item" open-type="navigate" url="/pages/test?id={{item.id}}">
+      <image src="{{item.picUrl}}" class="nav_icon"></image>
+      <view class="nav_text">{{item.title}}</view>
+    </navigator>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class HomeNav extends wepy.component {
+    props = {
+      list: {
+        type: Object,
+        default: []
+      }
+    }
+    components = {}
+    data = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+  }
+</script>
+
+<style lang="less">
+  .nav_list {
+    color: #404040;
+    display: flex;
+    font-size: 26rpx;
+    justify-content: space-between;
+    padding: 17rpx 50rpx;
+    navigator {
+      text-align: center
+    }
+    .nav_icon {
+      height: 80rpx;
+      margin: 0 auto;
+      width: 80rpx;
+      margin-bottom: 14rpx;
+    }
+    .nav_text {
+      font-size: 26rpx
+    }
+  }
+</style>

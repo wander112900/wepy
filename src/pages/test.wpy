@@ -1,0 +1,210 @@
+<template>
+  <view class="container">
+    <view class="title">
+      <view class="name">iPhone X / 8 / 8PLUS</view>
+      <view>「今日机情」价格表</view>
+      <view>1月<text class="day">22</text>日更新</view>
+    </view>
+    <view class="table">
+      <view class="thead bg-w">
+        <view class="th" style="width:200rpx;">型号</view>
+        <view class="th">容量</view>
+        <view class="th">颜色</view>
+        <view class="th">现货价格</view>
+        <view class="th">官方价</view>
+      </view>
+      <view class="goods" wx:for="{{goodsList}}" wx:for-index="idx" wx:for-item="item">
+        <image src="{{item.img}}" class="img" mode="aspectFit" />
+        <view class="storage">
+          <view class="storagename" wx:for="{{item.attr}}" wx:for-index="attridx" wx:for-item="attritem">
+            <view class="text">{{attritem.name}}</view>
+            <view class="color">
+              <text>银色</text>
+              <text>深空灰色</text>
+            </view>
+            <view class="price">
+              <text>7090</text>
+              <text>7190</text>
+            </view>
+            <view class="marketprice">
+              <text>{{attritem.price}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Find extends wepy.page {
+    config = {}
+    components = {}
+    data = {
+      goodsList: [{
+        id: 1,
+        img: 'http://www.rlma.cn/222.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 8900
+          }, {
+            color: '深空灰色',
+            price: 8900
+          }]
+        }]
+      }, {
+        id: 2,
+        img: 'http://www.rlma.cn/1.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }]
+      }, {
+        id: 3,
+        img: 'http://www.rlma.cn/1.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }]
+      }]
+    }
+    methods = {}
+    events = {}
+    onLoad() {}
+  }
+</script>
+
+<style lang="less">
+  .title {
+    background-image: url('http://www.rlma.cn/1.png');
+    text-align: center;
+    view {
+      font-size: large;
+      color: #fff;
+    }
+    .name {
+      font-size: x-large;
+    }
+    .day {
+      font-size: 60rpx;
+    }
+  }
+  .table {
+    background: #fff;
+    .thead {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      background: #ccc;
+      height: 60rpx;
+      align-items: center;
+      .th {
+        width: 20%;
+        justify-content: center;
+        color: #000000;
+        display: flex;
+        align-items: center;
+      }
+      .bg-w {
+        background: snow;
+      }
+    }
+  }
+  .goods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1rpx solid #ccc;
+    .img {
+      height: 201rpx;
+      border-right: 1rpx solid #ccc;
+      border-bottom: 1rpx solid #ccc;
+    }
+    .storage {
+      .storagename {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        .text {
+          width: 100rpx;
+          border-right: 1rpx solid #ccc;
+          border-bottom: 1rpx solid #ccc;
+        }
+        .color {
+          display: flex;
+          flex-direction: column;
+          text {
+            width: 200rpx;
+            line-height: 50rpx;
+            border-right: 1rpx solid #ccc;
+            border-bottom: 1rpx solid #ccc;
+          }
+        }
+        .price {
+          display: flex;
+          flex-direction: column;
+          text {
+            width: 150rpx;
+            line-height: 50rpx;
+            border-right: 1rpx solid #ccc;
+            border-bottom: 1rpx solid #ccc;
+          }
+        }
+        .marketprice {
+          justify-content: center;
+          width: 100rpx;
+          border-right: 1rpx solid #ccc;
+          border-bottom: 1rpx solid #ccc;
+        }
+      }
+    }
+  }
+</style>

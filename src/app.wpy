@@ -1,0 +1,73 @@
+<style lang="less">
+  @import './styles/base';
+  @import './styles/icon';
+  @import './styles/style';
+</style>
+
+<script>
+  import wepy from 'wepy'
+  import 'wepy-async-function'
+  export default class extends wepy.app {
+    config = {
+      pages: [
+        'pages/index',
+        'pages/category',
+        'pages/find',
+        'pages/cart',
+        'pages/me',
+        'pages/test'
+      ],
+      window: {
+        navigationBarBackgroundColor: '#FB0036',
+        navigationBarTitleText: '顺联动力商城',
+        navigationBarTextStyle: 'white'
+      },
+      tabBar: {
+        color: '#999999',
+        selectedColor: '#FB0036',
+        backgroundColor: '#ffffff',
+        borderStyle: 'black',
+        list: [{
+          pagePath: 'pages/index',
+          text: '首页',
+          iconPath: 'images/icon/home.png',
+          selectedIconPath: 'images/icon/home2.png'
+        }, {
+          pagePath: 'pages/category',
+          text: '分类',
+          iconPath: 'images/icon/cate.png',
+          selectedIconPath: 'images/icon/cate2.png'
+        }, {
+          pagePath: 'pages/find',
+          text: '发现',
+          iconPath: 'images/icon/find.png',
+          selectedIconPath: 'images/icon/find2.png'
+        }, {
+          pagePath: 'pages/cart',
+          text: '购物车',
+          iconPath: 'images/icon/cart.png',
+          selectedIconPath: 'images/icon/cart2.png'
+        }, {
+          pagePath: 'pages/me',
+          text: '我的',
+          iconPath: 'images/icon/me.png',
+          selectedIconPath: 'images/icon/me2.png'
+        }]
+      },
+      networkTimeout: {
+        request: 10000,
+        connectSocket: 10000,
+        uploadFile: 10000,
+        downloadFile: 10000
+      },
+      debug: false
+    }
+    globalData = {}
+    constructor() {
+      super()
+      this.use('requestfix')
+      this.use('promisify')
+    }
+    onLaunch() {}
+  }
+</script>

@@ -1,0 +1,154 @@
+<template lang="wxml">
+  <view wx:if="{{list.data.length>0}}">
+    <view class="recommend-title">{{list.title}}</view>
+    <view class="{{list.style}}">
+      <navigator class="list" wx:for="{{list.data}}" wx:key="item" url="/pages/test?id={{item.id}}">
+        <view class="image_box">
+          <image src="{{item.thumLogo}}"></image>
+        </view>
+        <view class="goods">
+          <view class="product_name">{{item.name}}</view>
+          <view class="product_info">
+            <view class="price">￥{{item.price}}</view>
+            <view class="cost_price">￥{{item.marketPrice}}</view>
+            <view class="sale_num">销量{{item.saleCount}}件</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Goods extends wepy.component {
+    props = {
+      list: {
+        type: Object,
+        default: []
+      }
+    }
+    components = {}
+    data = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+  }
+</script>
+
+<style lang="less">
+  .recommend-title {
+    padding: 20rpx 0;
+    text-align: center;
+    color: #333;
+    background-color: #ffffff;
+    border-top: 10rpx solid #efefee;
+  }
+  .shop_item {
+    background: #f7f7f7;
+    display: flex;
+    flex-wrap: wrap;
+    .list:nth-child(odd) {
+      margin-right: 1%;
+    }
+    .list {
+      background: #fff;
+      width: 49.5%;
+      margin-bottom: 15rpx;
+      .image_box {
+        image {
+          width: 100%;
+          height: 345rpx;
+        }
+      }
+      .goods {
+        padding: 15rpx 12rpx;
+        .product_name {
+          color: #1a1a1a;
+          font-size: 28rpx;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+        }
+        .product_info {
+          padding-top: 20rpx;
+          display: flex;
+          align-items: flex-end;
+          .price {
+            color: #de0000;
+            font-size: 35rpx;
+            font-weight: 600;
+          }
+          .cost_price {
+            color: #666666;
+            font-size: 24rpx;
+            text-decoration: line-through;
+            font-weight: 600;
+            padding-left: 20rpx;
+          }
+          .sale_num {
+            color: #666666;
+            font-size: 22rpx;
+            padding-left: 20rpx;
+          }
+        }
+      }
+    }
+  }
+  .shop_item2 {
+    background: #f7f7f7;
+    display: flex;
+    flex-wrap: wrap;
+    .list {
+      width: 100%;
+      display: flex;
+      background: #fff;
+      margin-bottom: 15rpx;
+      .image_box {
+        width: 40%;
+        image {
+          width: 280rpx;
+          height: 280rpx;
+        }
+      }
+      .goods {
+        width: 60%;
+        padding: 15rpx 12rpx;
+        .product_name {
+          color: #1a1a1a;
+          font-size: 28rpx;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+          margin-top: 20rpx;
+        }
+        .product_info {
+          padding-top: 20rpx;
+          .price {
+            color: #de0000;
+            font-size: 35rpx;
+            font-weight: 600;
+            margin-bottom: 30rpx;
+          }
+          .cost_price {
+            color: #666666;
+            font-size: 24rpx;
+            text-decoration: line-through;
+            font-weight: 600;
+            display: inline;
+            margin-right: 20rpx;
+          }
+          .sale_num {
+            color: #666666;
+            font-size: 22rpx;
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+</style>

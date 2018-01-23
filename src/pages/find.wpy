@@ -1,0 +1,309 @@
+<template>
+  <view class="container">
+    <view class="title">
+      <view class="name">iPhone X / 8 / 8PLUS</view>
+      <view>『今日机情』价格表</view>
+      <view>{{date.month}}月<text class="day">{{date.day}}</text>日更新</view>
+    </view>
+    <view class="table">
+      <view class="thead bg-w">
+        <view class="th" style="width:200rpx;">型号</view>
+        <view class="th" style="width:110rpx;">容量</view>
+        <view class="th" style="width:180rpx;">颜色</view>
+        <view class="th" style="width:150rpx;">现货价格</view>
+        <view class="th">官方价</view>
+      </view>
+      <view class="goods" wx:for="{{goodsList}}" wx:key="item">
+        <view class="img" style="height:{{item.attrcount * 82 -1}}rpx;">
+          <image src="{{item.img}}" mode="aspectFit" style="height:{{item.attrcount * 80}}rpx;" />
+        </view>
+        <view class="storage">
+          <view class="storagename" wx:for="{{item.attr}}" wx:key="attritem">
+            <view class="text" style="line-height:{{item.data.length * 80}}rpx;">{{item.name}}</view>
+            <view class="attrs">
+              <view class="attr" wx:for="{{item.data}}" wx:key="data">
+                <text class="color">{{item.color}}</text>
+                <text class="price">{{item.price}}</text>
+              </view>
+            </view>
+            <view class="marketprice">
+              <text style="line-height:{{item.data.length * 80}}rpx;">{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="title" style="padding:60rpx 0;">
+      <view>『今日机情』实时关注手机价格变化</view>
+      <view>掌握第一手手机价格讯息</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import util from '../utils/util'
+  export default class Find extends wepy.page {
+    config = {}
+    components = {}
+    data = {
+      date: {
+        month: util.DateFormat("MM", new Date()),
+        day: util.DateFormat("dd", new Date())
+      },
+      goodsList: [{
+        id: 1,
+        img: 'http://www.rlma.cn/222.png',
+        attrcount: 3,
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }, {
+            color: '土豪金',
+            price: 7720
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 8900
+          }, {
+            color: '深空灰色',
+            price: 8900
+          }]
+        }]
+      }, {
+        id: 2,
+        img: 'http://www.rlma.cn/222.png',
+        attrcount: 3,
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7750
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }]
+      }, {
+        id: 3,
+        attrcount: 3,
+        img: 'http://www.rlma.cn/1.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }]
+      }, {
+        id: 4,
+        attrcount: 2,
+        img: 'http://www.rlma.cn/222.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }]
+        }]
+      }, {
+        id: 5,
+        attrcount: 2,
+        img: 'http://www.rlma.cn/222.png',
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 7690
+          }]
+        }]
+      }, {
+        id: 1,
+        img: 'http://www.rlma.cn/222.png',
+        attrcount: 3,
+        attr: [{
+          name: '64G',
+          price: 8388,
+          data: [{
+            color: '银色',
+            price: 7690
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }, {
+            color: '土豪金',
+            price: 7720
+          }, {
+            color: '深空灰色',
+            price: 7720
+          }]
+        }, {
+          name: '256G',
+          price: 9688,
+          data: [{
+            color: '银色',
+            price: 8900
+          }, {
+            color: '深空灰色',
+            price: 8900
+          }]
+        }]
+      }]
+    }
+    methods = {}
+    events = {}
+    onLoad() {
+      for (var i = 0; i < this.goodsList.length; i++) {
+        let height = 0
+        this.goodsList[i].attr.forEach(element => {
+          height = height + element.data.length
+        })
+        this.goodsList[i].attrcount = height
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .title {
+    background-image: url('http://www.rlma.cn/1.png');
+    text-align: center;
+    padding: 20rpx 0;
+    view {
+      font-size: large;
+      color: #fff;
+    }
+    .name {
+      font-size: x-large;
+    }
+    .day {
+      font-size: 60rpx;
+    }
+  }
+  .table {
+    background: #fff;
+    .thead {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      background: #ccc;
+      height: 60rpx;
+      align-items: center;
+      .th {
+        justify-content: center;
+        color: #000000;
+        display: flex;
+        align-items: center;
+      }
+      .bg-w {
+        background: snow;
+      }
+    }
+  }
+  .goods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1rpx solid #ccc;
+    .img {
+      width: 180rpx;
+      border-right: 1rpx solid #ccc;
+      border-bottom: 1rpx solid #ccc;
+      image {
+        width: 180rpx;
+      }
+    }
+    .storage {
+      .storagename {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        .text {
+          width: 110rpx;
+          border-right: 1rpx solid #ccc;
+          border-bottom: 1rpx solid #ccc;
+        }
+        .attrs {
+          display: flex;
+          flex-direction: column;
+          .attr {
+            width: 350rpx;
+            display: flex;
+            flex-direction: row;
+            .color {
+              width: 200rpx;
+              border-right: 1rpx solid #ccc;
+              border-bottom: 1rpx solid #ccc;
+              line-height: 80rpx;
+            }
+            .price {
+              width: 150rpx;
+              border-right: 1rpx solid #ccc;
+              border-bottom: 1rpx solid #ccc;
+              line-height: 80rpx;
+            }
+          }
+        }
+        .marketprice {
+          justify-content: center;
+          width: 100rpx;
+          border-right: 1rpx solid #ccc;
+          border-bottom: 1rpx solid #ccc;
+        }
+      }
+    }
+  }
+</style>
