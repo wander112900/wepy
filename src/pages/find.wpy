@@ -48,8 +48,8 @@
     components = {}
     data = {
       date: {
-        month: util.DateFormat("MM", new Date()),
-        day: util.DateFormat("dd", new Date())
+        month: util.DateFormat('MM', new Date()),
+        day: util.DateFormat('dd', new Date())
       },
       goodsList: [{
         id: 1,
@@ -258,6 +258,7 @@
     justify-content: center;
     align-items: center;
     border-left: 1rpx solid #ccc;
+    background-image: url('http://www.rlma.cn/y.png?3');
     .img {
       width: 180rpx;
       border-right: 1rpx solid #ccc;
