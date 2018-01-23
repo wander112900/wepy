@@ -15,7 +15,8 @@
         'pages/find',
         'pages/cart',
         'pages/me',
-        'pages/test'
+        'pages/test',
+        'pages/test2'
       ],
       window: {
         navigationBarBackgroundColor: '#FB0036',

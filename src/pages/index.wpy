@@ -3,7 +3,7 @@
     <homeSwiper :list.sync="adList"></homeSwiper>
     <view class="pos">
       <view class="search_read_only">
-        <navigator class="search_content" open-type="navigate" url="/pages/test">
+        <navigator class="search_content" open-type="navigate" url="/pages/test2">
           <i class="iconfont icon-search"></i>
           <view class="search_input">搜索商品</view>
         </navigator>

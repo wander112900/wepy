@@ -1,0 +1,103 @@
+<template>
+  <view class="demo">
+    wepy-com-charts demo</view>
+  <lineChart :collection.sync="collection" :labels="labels" onXLabelFilter="enable"></lineChart>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Chart from '../components/line-chart'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'demo'
+    }
+    components = {
+      lineChart: Chart
+    }
+    data = {
+      labels: ['2016', '2017', '2018', '2019', '2020'],
+      collection: [{
+        name: 'line1',
+        data: [{
+            key: '2016',
+            value: 50
+          },
+          {
+            key: '2017',
+            value: 99
+          },
+          {
+            key: '2018',
+            value: 100
+          },
+          {
+            key: '2019',
+            value: 105
+          },
+          {
+            key: '2020',
+            value: 150
+          }
+        ]
+      }, {
+        name: 'line2',
+        data: [{
+            key: '2016',
+            value: 16
+          },
+          {
+            key: '2017',
+            value: 80
+          },
+          {
+            key: '2018',
+            value: 120
+          },
+          {
+            key: '2019',
+            value: 166
+          },
+          {
+            key: '2020',
+            value: 200
+          }
+        ]
+      }, {
+        name: 'line3',
+        data: [{
+            key: '2016',
+            value: 66
+          },
+          {
+            key: '2017',
+            value: 88
+          },
+          {
+            key: '2018',
+            value: 140
+          },
+          {
+            key: '2019',
+            value: 125
+          },
+          {
+            key: '2020',
+            value: 256
+          }
+        ]
+      }]
+    }
+    methods = {}
+    events = {}
+    onReady() {
+      this.$invoke('lineChart', 'draw')
+    }
+  }
+</script>
+
+<style lang="css">
+  .demo {
+    padding: 30px;
+    text-align: center;
+  }
+</style>
