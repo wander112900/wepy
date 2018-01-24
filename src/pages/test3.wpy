@@ -1,0 +1,164 @@
+<template>
+  <view class="container-box">
+    <view class="img-box">
+      <image @tap="previewImg" mode="scaleToFill" src="{{imagePath}}"></image>
+    </view>
+    <form @submit="formSubmit">
+      <view class="input-row">
+        <label>网址</label>
+        <input name='url' value='' type="text" maxlength="255" placeholder="{{placeholder}}" />
+      </view>
+      <button formType="submit" class="mybtn" type="primary">生成二维码</button>
+    </form>
+  </view>
+  <view hidden="{{maskHidden}}" class="mask"></view>
+  <view class="canvas-box">
+    <canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import QR from '../utils/qrcode'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'demo'
+    }
+    components = {}
+    data = {
+      canvasHidden: false,
+      maskHidden: true,
+      imagePath: '',
+      placeholder: 'http://wxapp-union.com'
+    }
+    //适配不同屏幕大小的canvas
+    setCanvasSize() {
+      var size = {}
+      try {
+        var res = wepy.getSystemInfoSync()
+        var scale = 750 / 686 //不同屏幕下canvas的适配比例；设计稿是750宽
+        var width = res.windowWidth / scale
+        var height = width //canvas画布为正方形
+        size.w = width
+        size.h = height
+      } catch (e) {
+        // Do something when catch error
+        console.log('获取设备信息失败' + e)
+      }
+      return size
+    }
+    createQrCode(url, canvasId, cavW, cavH) {
+      //调用插件中的draw方法，绘制二维码图片
+      QR.api.draw(url, canvasId, cavW, cavH)
+      setTimeout(() => {
+        this.canvasToTempImage()
+      }, 1000)
+    }
+    //获取临时缓存照片路径，存入data中
+    canvasToTempImage() {
+      var that = this
+      wepy.canvasToTempFilePath({
+        canvasId: 'mycanvas',
+        success: function(res) {
+          var tempFilePath = res.tempFilePath
+          that.imagePath = tempFilePath
+          this.$apply()
+        },
+        fail: function(res) {
+          console.log(res)
+        }
+      })
+    }
+    methods = {
+      //点击图片进行预览，长按保存分享图片
+      previewImg: function(e) {
+        var img = this.imagePath
+        wepy.previewImage({
+          current: img, // 当前显示图片的http链接
+          urls: [img] // 需要预览的图片http链接列表
+        })
+      },
+      formSubmit: function(e) {
+        var that = this
+        var url = e.detail.value.url
+        that.maskHidden = true
+        that.$apply()
+        wepy.showToast({
+          title: '生成中...',
+          icon: 'loading',
+          duration: 2000
+        })
+        var st = setTimeout(function() {
+          wepy.hideToast()
+          var size = that.setCanvasSize()
+          console.log(size)
+          //绘制二维码
+          that.createQrCode(url, 'mycanvas', size.w, size.h)
+          that.maskHidden = true
+          that.$apply()
+          clearTimeout(st)
+        }, 2000)
+      }
+    }
+    events = {}
+    onLoad() {
+      var size = this.setCanvasSize() //动态设置画布大小
+      var initUrl = 'http://wxapp-union.com' //this.placeholder
+      this.createQrCode(initUrl, 'mycanvas', size.w, size.h)
+    }
+  }
+</script>
+
+<style lang="css">
+  .container-box {
+    background-color: #efeff4;
+  }
+  .img-box {
+    padding: 32rpx;
+    background-color: #fff;
+    border-bottom: 1rpx solid #e5e5e5;
+    position: relative
+  }
+  .img-box image {
+    width: 686rpx;
+    height: 686rpx;
+    background-color: #f9f9f9
+  }
+  .input-row {
+    margin: 30rpx auto;
+    border-bottom: 1rpx solid #e5e5e5;
+    border-top: 1rpx solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    height: 88rpx;
+    padding: 0 32rpx;
+    background-color: #fff;
+    font-size: 34rpx;
+    color: #000
+  }
+  .input-row input {
+    margin-left: 100rpx;
+    flex: 1
+  }
+  .mybtn {
+    width: 686rpx;
+    margin: 60rpx auto
+  }
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  .canvas-box {
+    padding:32rpx;
+    /*
+    position: fixed;
+    top: 999999rpx;
+    left: 0
+    */
+  }
+</style>
